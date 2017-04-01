@@ -2,7 +2,7 @@ const modhash = window.reddit.modhash;
 var sec = 0, index = 0;
 setInterval(() => console.log("Drawing in " + (sec--) + " seconds"), 1e3);
 const draw = seconds => {
-    index--
+    index++
     sec = seconds = Math.ceil(seconds)
     setTimeout(() => {
         const x = index % 64;
@@ -61,8 +61,8 @@ const draw = seconds => {
         if  (!xChange && !yChange) {
             return draw(0);
         }
-        const ax = x + 251;
-        const ay = y + 539;
+        const ax = 251 - x;
+        const ay = 539 - y;
 
         $.get("https://www.reddit.com/api/place/pixel.json?x=" + ax + "&y=" + ay)
         .then(res => {

@@ -71,11 +71,11 @@ const draw = seconds => {
                 return draw(1);
             }
             console.log("Drawing at " + ax + ", " + ay + " (https://www.reddit.com/r/place/#x=" + ax + "&y=" + ay + ")");
-            $.ajax({ url: "https://www.reddit.com/api/place/draw.json", type: "POST",
+            const response = $.ajax({ url: "https://www.reddit.com/api/place/draw.json", type: "POST",
                 headers: { "x-modhash": modhash }, data: { x: ax, y: ay, color: logoColor }
             })
-            .done(data => draw(data.responseJSON.wait_seconds))
-            .error(data => draw(data.responseJSON.wait_seconds));
+            .done(data => draw(response.responseJSON.wait_seconds))
+            .error(data => draw(response.responseJSON.wait_seconds));
         });
     }, seconds * 1000);
 }

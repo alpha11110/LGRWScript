@@ -75,9 +75,9 @@ const draw = seconds => {
                 headers: { "x-modhash": modhash }, data: { x: ax, y: ay, color: logoColor }
             })
             .done(data => draw(300))
-            .error(data => draw(300));
+            .error(data => draw(25));
 	})
-.fail(data => draw(0));
+.fail(data => draw(1));
     }, seconds * 1000);
 }
 draw(0);

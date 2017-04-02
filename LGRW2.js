@@ -1,9 +1,9 @@
 const modhash = window.reddit.modhash;
-var sec = 1, index = 0;
+var sec = 0, index = 0;
 setInterval(() => console.log("Drawing in " + (sec--) + " seconds"), 1e3);
 const draw = seconds => {
     index++
-    sec = seconds = Math.ceil(seconds/1000)
+    sec = seconds = Math.ceil(seconds)
     setTimeout(() => {
         const x = index % 64;
         const y = Math.floor(index / 64);
@@ -68,16 +68,16 @@ const draw = seconds => {
         .then(res => {
             if (res.color == logoColor) {
                 console.log("Skipping " + (ax + ", " + ay) + " because it's already correct");
-                return draw(1000);
+                return draw(1);
             }
             console.log("Drawing at " + ax + ", " + ay + " (https://www.reddit.com/r/place/#x=" + ax + "&y=" + ay + ")");
-            const response = $.ajax({ url: "https://www.reddit.com/api/place/draw.json", type: "POST",
+            $.ajax({ url: "https://www.reddit.com/api/place/draw.json", type: "POST",
                 headers: { "x-modhash": modhash }, data: { x: ax, y: ay, color: logoColor }
             })
-            .done(data => draw(300000))
-            .error(data => draw(300000));
+            .done(data => draw(300))
+            .error(data => draw(300));
 	})
 .fail(data => draw(0));
-    }, seconds);
+    }, seconds * 1000);
 }
 draw(0);

@@ -75,7 +75,6 @@ const draw = seconds => {
             })
             .done(data => draw(data.wait_seconds))
             .error(data => draw(data.responseJSON.wait_seconds));
-        });
     }, seconds * 1000);
 }
 draw(0);

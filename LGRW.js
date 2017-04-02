@@ -62,11 +62,10 @@ const draw = seconds => {
             return draw(0);
         }
         const ax = 251 - x;
-        const ay = y + 539;
+        const ay = 539 + y;
 
-        $.get("https://www.reddit.com/api/place/pixel.json?x=" + ax + "&y=" + ay)
-        .then(res => {
-            if (res.color == logoColor) {
+        const pixColor = $.get("https://www.reddit.com/api/place/pixel.json?x=" + ax + "&y=" + ay)
+        if (pixColor.responseJSON.color == logoColor) {
                 console.log("Skipping " + (ax + ", " + ay) + " because it's already correct");
                 return draw(1);
             }

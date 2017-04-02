@@ -74,7 +74,7 @@ const draw = seconds => {
             $.ajax({ url: "https://www.reddit.com/api/place/draw.json", type: "POST",
                 headers: { "x-modhash": modhash }, data: { x: ax, y: ay, color: logoColor }
             })
-            .done(data => draw(data.wait_seconds))
+            .done(data => draw(data.responseJSON.wait_seconds))
             .error(data => draw(data.responseJSON.wait_seconds));
         });
     }, seconds * 1000);

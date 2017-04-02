@@ -62,7 +62,7 @@ const draw = seconds => {
             return draw(0);
         }
         const ax = 251 - x;
-        const ay = 539 - y;
+        const ay = y + 539;
 
         $.get("https://www.reddit.com/api/place/pixel.json?x=" + ax + "&y=" + ay)
         .then(res => {

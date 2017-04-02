@@ -68,7 +68,7 @@ const draw = seconds => {
         .then(res => {
             if (res.color == logoColor) {
                 console.log("Skipping " + (ax + ", " + ay) + " because it's already correct");
-                return draw(20);
+                return draw(1000);
             }
             console.log("Drawing at " + ax + ", " + ay + " (https://www.reddit.com/r/place/#x=" + ax + "&y=" + ay + ")");
             const response = $.ajax({ url: "https://www.reddit.com/api/place/draw.json", type: "POST",
